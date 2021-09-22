@@ -1,0 +1,48 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>Desconhecido </title></head><body>
+<h3 id="docker">Docker</h3>
+<hr />
+<h4 id="how-docker-works">How docker works</h4>
+<p>Docker is a tool to virtualize images created from code.</p>
+<p>Basically, we write code, like a backend API, then we create an image, that is
+all the files that compose our API, the environment settings, 
+the source code, the dependencies, libraries.</p>
+<p>With that image we can tell docker to create a container from that image 
+using the Dockerfile, where me set a layered commands to tell docker how
+to run the API.</p>
+<p>Docker is not limited to the imaes we build, there's a lot of images mantained
+by it's creators on <a href="https://hub.docker.com/">Docker Hub</a> we add these images
+to our applications on the Dockerfile.</p>
+<hr />
+<h4 id="how-to-install-docker">How to install docker</h4>
+<p><a href="https://docs.docker.com/get-docker/">How to install docker</a></p>
+<hr />
+<h4 id="dockerfile">Dockerfile</h4>
+<p>The Dockerfile is the file where we set all the commands that a user 
+would write on the commandline to setup the application</p>
+<p>We have to write a Dockerfile for every unity of software we have to 
+create a image for the containers to run</p>
+<p>A simple Docker to run a express.js server would look like this:</p>
+<p>```</p>
+<p>FROM node</p>
+<p>WORKDIR /app</p>
+<p>COPY . .</p>
+<p>RUN npm install</p>
+<p>CMD ["npm","start"]</p>
+<p>```</p>
+<p>Here the FROM is the parent of the image we are building and <strong>every</strong>
+Dockerfile must start with the From instruction</p>
+<hr />
+<h4 id="dcoker-commands">Dcoker commands</h4>
+<p><code>docker docker run [-d] &lt;image_hash&gt;</code> docker build a image and start a container in a atatched mode
+this means that we are listening to the output of the program on the terminal</p>
+<p>We can attatch to a detatched container again by runnint <code>docker container attatch &lt;container_name&gt;</code></p>
+<p>An alternative to this is <code>docker logs &lt;container_name&gt;</code> to print the output of the container 
+if we add the flag <code>-f</code> is like attatching to the output of the container </p>
+<p>To be able to access the port exposed by a container we have to add <code>-p &lt;local_port&gt;:&lt;container_port&gt;</code>
+i.e.: if we create a server to listen to the port 80 and then create a container to run the application
+we have to run it like <code>docker run -p 3000:80 [image ID]</code></p>
+<p><code>docker ps</code> lists the number of containers running</p>
+<p><code>docker ps -a</code> lists all containers you had in the path including the stopped containers</p>
+<p><code>docker stop &lt;container_name&gt;</code> stop a process</p>
+<p><code>docker start &lt;container_name&gt; [-a]</code> start a stopped container the flag <code>-a</code> is to attatch to the container</p>
+</body></html>
