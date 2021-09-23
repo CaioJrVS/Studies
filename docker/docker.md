@@ -108,3 +108,9 @@ Images can be named and it has a lot of advantages, like setting a version i.e.:
 for that just specify the flag `--tag`
 
 `docker build <path_to_dockerfile> --tag <image_name>:<image_tag>`
+
+---
+
+#### Publishing Docker images
+
+
