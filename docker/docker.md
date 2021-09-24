@@ -113,4 +113,20 @@ for that just specify the flag `--tag`
 
 #### Publishing Docker images
 
+There's a lot of images repositories, but docker has [dockerhub](https://hub.docker.com/)
+and create a account
+
+Then repositories -> create repository -> set a name to the repository
+
+Now we can push ou images to the repository we just create
+
+Type `docker login` on the terminal to login with your docker account 
+
+Create an image that is the same name as the repository and you can set a tag for the name also
+
+Then to push the image created to the repository: `docker push <image_name>` remember that the image name must be the same name as the repository, to change a image tag and name: `docker tag <image_name_to_change> <new_image_name>` 
+
+To pull an image: `docker pull <image_name>`
+
+
 
