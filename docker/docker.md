@@ -128,5 +128,14 @@ Then to push the image created to the repository: `docker push <image_name>` rem
 
 To pull an image: `docker pull <image_name>`
 
+---
 
+#### Volumes
 
+The container runs an image and all the data stored to the container is gonna be missed when 
+the container is removed, just because the container has its own operating system and so it's
+own file system and when we save something into it and thenn the container is removed, so is 
+the content insed of it.
+
+The solution to this is the Volume, we map a folder inside the container to one of our own 
+Operating System so when the container is removed we keep the data
