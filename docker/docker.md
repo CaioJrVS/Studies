@@ -37,6 +37,11 @@ create a image for the containers to run
 
 A simple Docker to run a express.js server would look like this:
 
+**.dockerignore**
+
+This file is similar to .gitignore and it is used to set the name of the files
+that docker will ignore when compying the files specified inside Dockerfile
+
 ```
 
 FROM node
@@ -139,3 +144,81 @@ the content insed of it.
 
 The solution to this is the Volume, we map a folder inside the container to one of our own 
 Operating System so when the container is removed we keep the data
+
+**Annonymous Volumes**
+
+Annonymous Volumes are are created by docker and even though it's mapped to a file inside our
+system, it's removed when a container is removed (It's only removed if you add the --rm flag
+when creating a container from an image, otherwise it will persist but without any utility because
+when we create another container from the same image it will crerate another annonymous volume for 
+the new container, to remove an ano).
+
+To create an Annonymous volume just add to the Dockerfile:
+
+`Volume ["<container_volume_path>"]`
+
+**Volumes**
+
+To map a folder inside our application just add `-v <folder_name>:<path_to_folder_in_container>` to the docker run command like:
+
+`docker run <image_id> --rm -p 3000:80 -v feedback:app/feedback`
+
+with this when the container is stopped and removed and run again the data will persist
+
+**Bound Map**
+
+If we set an absolute path on the `<folder_name>` of a file that is inside our container 
+the container will use that file and every change we make to the file is going to be 
+reflected inside the container 
+
+`docker volume ls` lists all the volumes
+
+`docker volume --help` list the commands for volume management, there's not much 
+and it's very easy to understand
+
+--- 
+
+#### Environment variables
+
+To set an environment variable with docker just add the name of the environment
+variable inside Docker file i.e.:
+
+```
+FROM node:14 
+
+# Other commands
+
+ENV PORT 80
+
+EXPOSE $PORT
+
+```
+
+And then we pass it using the command line with the `-e` command on the `docker run` command command
+
+`docker run <image_id> -e PORT=60 -p 3000:60`
+
+If we have an .env file we can specify the file using `--env-file ./.env`
+
+**Avoid adding security information like connection strings to the image you are building. 
+The information is going to persist on the image and people can access using docker image <history>**
+
+---
+
+#### Arguments
+
+We can set arguments to be passed to the image on the command line using Dockerfile
+and passing it with the flag `--build-arg`
+
+
+```
+ARG DEFAULT_PORT=80
+
+```
+
+```
+docker run <image_id> --build-arg DEFAULT_PORT=60
+
+```
+
+
