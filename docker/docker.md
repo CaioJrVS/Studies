@@ -165,7 +165,7 @@ To map a folder inside our application just add `-v <folder_name>:<path_to_folde
 
 with this when the container is stopped and removed and run again the data will persist
 
-**Bound Map**
+**Bind Map**
 
 If we set an absolute path on the `<folder_name>` of a file that is inside our container 
 the container will use that file and every change we make to the file is going to be 
