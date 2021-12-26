@@ -81,7 +81,7 @@ we have to run it like `docker run -p 3000:80 [image ID]`
 
 `docker ps` lists the number of containers running
 
-`docker ps -a` lists all containers you had in the path including the stopped containers
+`docker ps -a` lists all containers you had in the past including the stopped containers
 
 `docker images` list all created images
 
